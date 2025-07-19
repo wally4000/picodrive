@@ -229,6 +229,7 @@ OBJS += platform/libpicofe/linux/fbdev.o
 OBJS += platform/libpicofe/linux/xenv.o
 OBJS += platform/libpicofe/linux/plat.o
 OBJS += platform/libpicofe/pandora/plat.o
+USE_FRONTEND = 1
 endif
 ifeq "$(PLATFORM)" "gp2x"
 OBJS += platform/common/arm_utils.o 
