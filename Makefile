@@ -219,16 +219,13 @@ OBJS += platform/libpicofe/pandora/plat.o
 USE_FRONTEND = 1
 endif
 ifeq "$(PLATFORM)" "pyra"
-platform/common/menu_pico.o: CFLAGS += -DPANDORA
-platform/libpicofe/linux/plat.o: CFLAGS += -DPANDORA
-OBJS += platform/pandora/plat.o
-OBJS += platform/pandora/asm_utils.o
-OBJS += platform/common/arm_utils.o 
-OBJS += platform/libpicofe/linux/in_evdev.o
-OBJS += platform/libpicofe/linux/fbdev.o 
-OBJS += platform/libpicofe/linux/xenv.o
+CFLAGS+= -DHAVE_GLES
+LDFLAGS += -lEGL -lGLESv1_CM
+CFLAGS += -DSDL_OVERLAY_2X -DSDL_BUFFER_3X -DSDL_REDRAW_EVT
+OBJS += platform/linux/emu.o platform/linux/blit.o # FIXME
+OBJS += platform/common/plat_sdl.o platform/common/inputmap_kbd.o
+OBJS += platform/libpicofe/plat_sdl.o platform/libpicofe/in_sdl.o
 OBJS += platform/libpicofe/linux/plat.o
-OBJS += platform/libpicofe/pandora/plat.o
 USE_FRONTEND = 1
 endif
 ifeq "$(PLATFORM)" "gp2x"
