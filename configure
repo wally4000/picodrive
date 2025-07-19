@@ -39,7 +39,7 @@ check_define()
 # "" means "autodetect".
 
 # TODO this is annoyingly messy. should have platform and device
-platform_list="generic pandora gph dingux retrofw opendingux[-gcw0] odbeta[-gcw0] miyoo rpi1 rpi2 ps2 psp win32"
+platform_list="generic pandora pyra gph dingux retrofw opendingux[-gcw0] odbeta[-gcw0] miyoo rpi1 rpi2 ps2 psp win32"
 platform="generic"
 sound_driver_list="oss alsa sdl"
 sound_drivers=""
@@ -132,7 +132,12 @@ set_platform()
     have_libavcodec="yes"
     MFLAGS="-mcpu=cortex-a8 -mfpu=neon -mfloat-abi=softfp"
     ;;
-  gph)
+ pyra)
+   sound_drivers="oss alsa"
+   have_libavcodec="yes"
+   MFLAGS="-mcpu=cortex-a15 -mfpu=neon -mfloat-abi=hard"
+   ;;  
+gph)
     sound_drivers="oss"
     # compile for OABI if toolchain provides it (faster code on caanoo)
     have_arm_oabi="yes"
